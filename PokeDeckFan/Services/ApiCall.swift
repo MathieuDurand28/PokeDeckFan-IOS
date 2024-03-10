@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class ApiCall {
+    
+    func shinyModeEnabled() -> Bool {
+        return Bool.random()
+    }
+    
+    func getInformationsFromAPI() {
+        
+    }
+}
