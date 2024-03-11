@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E90C9632B9F49BC0000CA2F /* ApiModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E90C9622B9F49BC0000CA2F /* ApiModels.swift */; };
 		4EA15E842B9D9F5C003A4973 /* PokeDeckFanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA15E832B9D9F5C003A4973 /* PokeDeckFanApp.swift */; };
 		4EA15E862B9D9F5C003A4973 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA15E852B9D9F5C003A4973 /* ContentView.swift */; };
 		4EA15E882B9D9F5D003A4973 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EA15E872B9D9F5D003A4973 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E90C9622B9F49BC0000CA2F /* ApiModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModels.swift; sourceTree = "<group>"; };
 		4EA15E802B9D9F5C003A4973 /* PokeDeckFan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDeckFan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA15E832B9D9F5C003A4973 /* PokeDeckFanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDeckFanApp.swift; sourceTree = "<group>"; };
 		4EA15E852B9D9F5C003A4973 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E90C9612B9F49AD0000CA2F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4E90C9622B9F49BC0000CA2F /* ApiModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		4EA15E772B9D9F5C003A4973 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +69,7 @@
 		4EA15E822B9D9F5C003A4973 /* PokeDeckFan */ = {
 			isa = PBXGroup;
 			children = (
+				4E90C9612B9F49AD0000CA2F /* Models */,
 				4EA15E942B9DB7C7003A4973 /* Services */,
 				4EA15E912B9DB574003A4973 /* Components */,
 				4EA15E952B9DB8B0003A4973 /* Views */,
@@ -175,6 +186,7 @@
 			files = (
 				4EA15E992B9DC5E2003A4973 /* ApiCall.swift in Sources */,
 				4EA15E862B9D9F5C003A4973 /* ContentView.swift in Sources */,
+				4E90C9632B9F49BC0000CA2F /* ApiModels.swift in Sources */,
 				4EA15E9B2B9DC8C3003A4973 /* ListTypeView.swift in Sources */,
 				4EA15E972B9DB8CE003A4973 /* HomeView.swift in Sources */,
 				4EA15E932B9DB58B003A4973 /* CustomToggle.swift in Sources */,
