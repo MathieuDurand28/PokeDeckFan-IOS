@@ -30,7 +30,6 @@ struct HomeView: View {
                         CustomToggle(toggle: $shiny, disabled: $toggleDisabled, toggleColor: .yellow, toggleName: "Shiny")
                     }
                 }
-
                 if let tyradex = api.tyradex {
                     Section("Résultat") {
                         if tyradex.message != nil {
