@@ -13,19 +13,21 @@ struct HomeView: View {
     @State var request: String = ""
     @State var shiny: Bool = false
     @State var toggleDisabled: Bool = false
-    @State var datas: Tyradex? = nil
+    
+    var mode: Int = 2
     
     var body: some View {
         VStack {
             List {
                 Section {
                     TextField(text: $request) {
-                        Text("Entrez un nom")      
+                        Text("Entrez un nom")
                     }
                     .multilineTextAlignment(.center)
                     
                 }
                 if api.toggleResult != nil {
+                    
                     Section("Critéres supplémentaires") {
                         CustomToggle(toggle: $shiny, disabled: $toggleDisabled, toggleColor: .yellow, toggleName: "Shiny")
                     }
@@ -35,26 +37,29 @@ struct HomeView: View {
                     Section("Résultat") {
                         if tyradex.message != nil {
                             Text("\(tyradex.message ?? "")")
+                        } else {
+                            ResultView(datas: tyradex, shiny: $shiny)
                         }
-                        Text("\(tyradex.name?["fr"] ?? "")")
+                        
                     }
                     .multilineTextAlignment(.center)
                 }
-
             }
             .cornerRadius(10)
             //.scrollContentBackground(.hidden)
+            .onAppear(perform: {
+                self.api.shinyModeDisabled()
+            })
+            .padding()
+            
             Button("Recherche") {
-                self.api.getInformationsFromAPI(name: "\(request)", mode: 1)
+                self.api.getInformationsFromAPI(name: "\(request)" ,mode: (api.toggleResult != nil ? 1 : 2))
             }
             .disabled(request.isEmpty)
             .buttonStyle(.borderedProminent)
-           
+            Divider()
         }
-        .onAppear(perform: {
-            self.api.shinyModeDisabled()
-        })
-        .padding()
+        
 
     }
     

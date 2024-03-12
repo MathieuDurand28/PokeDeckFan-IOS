@@ -19,14 +19,14 @@ struct ContentView: View {
                 ListTypeView()
                     .tabItem { Label("Listes de types", systemImage: "list.bullet.clipboard") }
                     .tag(1)
-                HomeView()
-                    .tabItem { Label("", systemImage: "magnifyingglass") }
-                    .tag(2)
             }
             .toolbar {
-                Button("infos") {
+                Button(role: .cancel) {
                     sheetInfos.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
                 }
+          
             }
       
         }

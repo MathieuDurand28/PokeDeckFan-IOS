@@ -24,9 +24,8 @@ class ApiCall: ObservableObject {
                        self.toggleResult = res
                    }
                    
-                }
+               }
             }.resume()
-       
     }
     
     func getInformationsFromAPI(name: String, mode: Int?) {
@@ -44,7 +43,6 @@ class ApiCall: ObservableObject {
                             // Assuming the response data is an array of strings
                             let decodedData = try JSONDecoder().decode(Tyradex.self, from: data ?? Data())
                             DispatchQueue.main.async {
-                                print(decodedData)
                                 self.tyradex = decodedData
                             }
                         } catch {

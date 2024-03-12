@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ResultView: View {
+    let datas: Tyradex
+    @Binding var shiny: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, \(datas.name?.jp ?? "World")")
     }
 }
 
 #Preview {
-    ResultView()
+    ResultView(datas: Tyradex(name: nil, status: 0, message: "", sprites: nil, types: nil, stats: nil, height: nil, weight: nil), shiny: .constant(false))
 }
