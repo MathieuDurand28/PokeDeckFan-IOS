@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
+    let pokemonType: PokemonType
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Text("Résistances pour le type ")
+                        Spacer()
+                    }
+                    HStack {
+                        Spacer()
+                        Text("\(pokemonType.name.fr) - \(pokemonType.name.en) - \(pokemonType.name.jp)")
+                        Spacer()
+                    }
+                }
+                
+                VStack {
+                    ForEach(pokemonType.resistances, id: \.name) { res in
+                        HStack {
+                            Text("\(res.name)")
+                            Spacer()
+                            Text("\(String(format: "%.2f", res.multiplier))")
+                        }
+                        
+                    }
+                }
+            }
+            
+        }
     }
-}
-
-#Preview {
-    PokemonDetailView()
 }
