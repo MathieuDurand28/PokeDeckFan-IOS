@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var api = ApiCall()
+    @ObservedObject var api: ApiCall
     
     @State var request: String = ""
     @State var shiny: Bool = false
     @State var toggleDisabled: Bool = false
+    
     
     var mode: Int = 2
     
@@ -48,7 +49,9 @@ struct HomeView: View {
             .cornerRadius(10)
             //.scrollContentBackground(.hidden)
             .onAppear(perform: {
-                self.api.shinyModeDisabled()
+                self.api.apiIsOffline { success in
+                    
+                }
             })
             .padding()
             
@@ -64,7 +67,4 @@ struct HomeView: View {
     }
     
 }
-                  
-#Preview {
-    HomeView()
-}
+

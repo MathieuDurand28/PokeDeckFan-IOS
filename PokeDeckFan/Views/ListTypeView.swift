@@ -8,31 +8,25 @@
 import SwiftUI
 
 struct ListTypeView: View {
-    @ObservedObject var api = ApiCall()
-    
-    
+    @ObservedObject var api: ApiCall
+
     var body: some View {
         NavigationStack {
-            List(api.pokemonTypes) { type in
-               NavigationLink(destination: {
-                   PokemonDetailView(pokemonType: type)
-               }, label: {
-                   HStack {
-                       Spacer()
-                       Text("\(type.name.fr) - \(type.name.en) - \(type.name.jp)")
-                       Spacer()
-                   }
-               })
-           }
+            List {
+                ForEach(api.pokemonTypes, id: \.name.fr) { type in
+                    NavigationLink(destination: PokemonDetailView(pokemonType: type)) {
+                        HStack {
+                            Spacer()
+                            Text("\(type.name.fr) - \(type.name.en) - \(type.name.jp)")
+                            Spacer()
+                        }
+                    }
+                    
+                }
+            }
         }
         .onAppear(perform: {
             api.getAllTypesOfPokemon()
         })
-        
-           
     }
-}
-
-#Preview {
-    ListTypeView()
 }

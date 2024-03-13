@@ -7,13 +7,19 @@
 
 import Foundation
 
+enum ApiCallResult {
+    case success(Bool)
+    case failure(Bool)
+}
+
+
 class ApiCall: ObservableObject {
     @Published var tyradex: Tyradex?
     @Published var toggleResult: Bool?
     @Published var pokemonTypes: [PokemonType] = []
    
     
-    func shinyModeDisabled() {
+    func apiIsOffline(completion: @escaping (ApiCallResult) -> Void) {
         guard let url = URL(string: "https://tyradex.tech/api/v1/pokemon/246") else {
                     print("Invalid URL")
                     return
@@ -22,9 +28,12 @@ class ApiCall: ObservableObject {
                if let httpResponse = response as? HTTPURLResponse {
                    DispatchQueue.main.async {
                        let res = httpResponse.statusCode != 200
+                       completion(.success(true))
                        self.toggleResult = res
                    }
                    
+               } else {
+                   completion(.failure(true))
                }
             }.resume()
     }
