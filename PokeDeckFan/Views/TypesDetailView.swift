@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PokemonDetailView: View {
+struct TypesDetailView: View {
     let pokemonType: PokemonType
     
     var body: some View {
@@ -22,6 +22,7 @@ struct PokemonDetailView: View {
                     HStack {
                         Spacer()
                         Text("\(pokemonType.name.fr) - \(pokemonType.name.en) - \(pokemonType.name.jp)")
+                            .foregroundStyle(.secondary)
                         Spacer()
                     }
                 }
@@ -32,6 +33,7 @@ struct PokemonDetailView: View {
                             Text("\(res.name)")
                             Spacer()
                             Text("\(String(format: "%.2f", res.multiplier))")
+                                .foregroundStyle(res.multiplier < 1.00 ? .green : res.multiplier > 1.00 ? .red : .gray )
                         }
                         
                     }

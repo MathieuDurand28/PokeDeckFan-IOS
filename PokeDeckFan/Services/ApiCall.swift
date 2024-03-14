@@ -17,6 +17,8 @@ class ApiCall: ObservableObject {
     @Published var tyradex: Tyradex?
     @Published var toggleResult: Bool?
     @Published var pokemonTypes: [PokemonType] = []
+    @Published var generationList: [GenerationList] = []
+    @Published var PokemonListByGeneration: [PokemonByGeneration] = []
    
     
     func apiIsOffline(completion: @escaping (ApiCallResult) -> Void) {
@@ -96,4 +98,58 @@ class ApiCall: ObservableObject {
            
             
     }
+    
+    func getGenerationList() {
+        guard let url = URL(string: "https://tyradex.tech/api/v1/gen") else {
+            print("URL non valide")
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let result = try decoder.decode([GenerationList].self, from: data)
+                    DispatchQueue.main.async {
+                        self.generationList = result
+                        
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }.resume()
+    }
+    
+    func getPokemonByGeneration(gen: Int) {
+        if !self.PokemonListByGeneration.isEmpty {
+            self.PokemonListByGeneration = []
+        }
+        guard let url = URL(string: "https://tyradex.tech/api/v1/gen/\(gen)") else {
+            print("URL non valide")
+            return
+        }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let result = try decoder.decode([PokemonByGeneration].self, from: data)
+                    DispatchQueue.main.async {
+                        self.PokemonListByGeneration = result
+                    }
+                } catch {
+                    if let httpResponse = response as? HTTPURLResponse {
+                        print("error http status: \(httpResponse.statusCode)")
+                    }
+                    print("error gen: \(gen)")
+                    print("error url: \(url)")
+                    print(error.localizedDescription)
+                }
+                
+            }
+        }.resume()
+    }
+    
+    
 }

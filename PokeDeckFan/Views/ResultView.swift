@@ -18,7 +18,7 @@ struct ResultView: View {
                 .bold()
             HStack {
                 Spacer()
-                AsyncImage(url: URL(string: "\((shiny ? datas.sprites?.shiny : datas.sprites?.regular) ?? "<a href='https://www.freeiconspng.com/img/23485'>Icon No Download</a>")"),
+                AsyncImage(url: URL(string: "\((shiny ? datas.sprites?.shiny : datas.sprites?.regular) ?? "")"),
                            scale: 4)
                 Spacer()
             }

@@ -18,7 +18,7 @@ struct HomeView: View {
     var mode: Int = 2
     
     var body: some View {
-        VStack {
+        NavigationStack {
             List {
                 Section {
                     TextField(text: $request) {
@@ -47,6 +47,8 @@ struct HomeView: View {
                 }
             }
             .cornerRadius(10)
+            .navigationTitle("Recherche de Pokémon")
+            .navigationBarTitleDisplayMode(.inline)
             //.scrollContentBackground(.hidden)
             .onAppear(perform: {
                 self.api.apiIsOffline { success in

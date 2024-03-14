@@ -14,7 +14,7 @@ struct ListTypeView: View {
         NavigationStack {
             List {
                 ForEach(api.pokemonTypes, id: \.name.fr) { type in
-                    NavigationLink(destination: PokemonDetailView(pokemonType: type)) {
+                    NavigationLink(destination: TypesDetailView(pokemonType: type)) {
                         HStack {
                             Spacer()
                             Text("\(type.name.fr) - \(type.name.en) - \(type.name.jp)")
@@ -24,6 +24,8 @@ struct ListTypeView: View {
                     
                 }
             }
+            .navigationTitle("Liste des résistances")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear(perform: {
             api.getAllTypesOfPokemon()
